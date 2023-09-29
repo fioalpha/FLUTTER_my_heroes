@@ -15,10 +15,7 @@ class HeroRepositoryImpl implements HeroRepository {
 
   @override
   Future<List<Hero>> fetchListHero(int length) async {
-    print("Fetch data");
-
     var result = await remoteDataSource.fetchHero(length: length);
-    print("Resulto $result");
     return result.data
         .results
         .map((data) {

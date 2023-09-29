@@ -1,5 +1,4 @@
 import 'package:my_heroes/data/remote_datasource/hero_service_rest.dart';
-import 'package:my_heroes/platform/http_service.dart';
 
 import 'entity/dto.dart';
 

@@ -17,31 +17,25 @@ abstract class _HeroesController with Store {
        )
    );
 
-   @observable
-   ObservableList<HeroModel> heroesList = ObservableList();
+    @observable
+    ObservableList<HeroModel> heroesList = ObservableList();
 
-  @observable
-  ObservableFuture<List<HeroModel>> heroes = ObservableFuture.value([]);
+    @observable
+    ObservableFuture<List<HeroModel>> heroes = ObservableFuture.value([]);
 
-  @action
-  Future fetchHeroes() => heroes = ObservableFuture(
-      getHeroUseCase.execute(0)
-  ).then((value) => toModel(value));
-
-  @action
-  void updateData() {
-    ObservableFuture(
-        getHeroUseCase.execute(heroesList.length)
-    ).then((value) =>
-        heroesList.addAll(toModel(value))
-    );
-  }
+    @action
+    void updateData() {
+      ObservableFuture(
+          getHeroUseCase.execute(heroesList.length)
+      ).then((value) =>
+          heroesList.addAll(toModel(value))
+      );
+    }
 
 
-  List<HeroModel> toModel(List<Hero> data) {
-    print("Data recebido $data");
-    return data.map((hero) => HeroModel(hero.image, hero.name))
-        .toList();
-  }
+    List<HeroModel> toModel(List<Hero> data) {
+      return data.map((hero) => HeroModel(hero.image, hero.name))
+          .toList();
+    }
 }
 

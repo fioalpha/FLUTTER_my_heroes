@@ -9,6 +9,22 @@ part of 'heroes_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HeroesController on _HeroesController, Store {
+  late final _$heroesListAtom =
+      Atom(name: '_HeroesController.heroesList', context: context);
+
+  @override
+  ObservableList<HeroModel> get heroesList {
+    _$heroesListAtom.reportRead();
+    return super.heroesList;
+  }
+
+  @override
+  set heroesList(ObservableList<HeroModel> value) {
+    _$heroesListAtom.reportWrite(value, super.heroesList, () {
+      super.heroesList = value;
+    });
+  }
+
   late final _$heroesAtom =
       Atom(name: '_HeroesController.heroes', context: context);
 
@@ -29,11 +45,11 @@ mixin _$HeroesController on _HeroesController, Store {
       ActionController(name: '_HeroesController', context: context);
 
   @override
-  Future<dynamic> fetchHeroes() {
+  void updateData() {
     final _$actionInfo = _$_HeroesControllerActionController.startAction(
-        name: '_HeroesController.fetchHeroes');
+        name: '_HeroesController.updateData');
     try {
-      return super.fetchHeroes();
+      return super.updateData();
     } finally {
       _$_HeroesControllerActionController.endAction(_$actionInfo);
     }
@@ -42,6 +58,7 @@ mixin _$HeroesController on _HeroesController, Store {
   @override
   String toString() {
     return '''
+heroesList: ${heroesList},
 heroes: ${heroes}
     ''';
   }
