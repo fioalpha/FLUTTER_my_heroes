@@ -20,6 +20,7 @@ dev_dependencies:
   flutter_lints: ^2.0.3
   build_runner: ^2.4.6
   mobx_codegen: ^2.4.0
+  mockito:
 
 flutter:
   uses-material-design: true

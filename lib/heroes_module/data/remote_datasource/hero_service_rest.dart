@@ -27,9 +27,4 @@ class HeroServiceImpl extends HeroService {
     throw UnimplementedError();
   }
 
-
-  static HeroService create() {
-      return HeroServiceImpl();
-  }
-
 }
