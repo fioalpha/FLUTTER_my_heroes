@@ -1,6 +1,5 @@
-import 'package:my_heroes/data/remote_datasource/hero_service_rest.dart';
-
 import 'entity/dto.dart';
+import 'hero_service_rest.dart';
 
 abstract class RemoteDataSource {
   Future<StatusResponse> fetchHero({ int limit=20, int length});
@@ -8,18 +7,12 @@ abstract class RemoteDataSource {
 
 class RemoteDataSourceImpl extends RemoteDataSource {
 
-  HeroService service;
+  final HeroService service;
 
-  RemoteDataSourceImpl(this.service): super();
+  RemoteDataSourceImpl({required this.service}): super();
 
   @override
   Future<StatusResponse> fetchHero({int limit = 20, int length = 0}) async {
     return await service.fetchHeroes(length: length);
-  }}
-
-class HeroServiceFactory {
-
-  static RemoteDataSource createRemoteDataSource() {
-    return RemoteDataSourceImpl(HeroServiceImpl.create());
   }
 }

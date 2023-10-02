@@ -1,5 +1,4 @@
-import 'package:my_heroes/data/hero_repository.dart';
-
+import '../../data/hero_repository.dart';
 import '../hero.dart';
 
 class GetHeroUseCase {

@@ -13,13 +13,13 @@ mixin _$HeroesController on _HeroesController, Store {
       Atom(name: '_HeroesController.heroesList', context: context);
 
   @override
-  ObservableList<HeroModel> get heroesList {
+  List<HeroModel> get heroesList {
     _$heroesListAtom.reportRead();
     return super.heroesList;
   }
 
   @override
-  set heroesList(ObservableList<HeroModel> value) {
+  set heroesList(List<HeroModel> value) {
     _$heroesListAtom.reportWrite(value, super.heroesList, () {
       super.heroesList = value;
     });
@@ -41,6 +41,22 @@ mixin _$HeroesController on _HeroesController, Store {
     });
   }
 
+  late final _$isLoadingAtom =
+      Atom(name: '_HeroesController.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$_HeroesControllerActionController =
       ActionController(name: '_HeroesController', context: context);
 
@@ -59,7 +75,8 @@ mixin _$HeroesController on _HeroesController, Store {
   String toString() {
     return '''
 heroesList: ${heroesList},
-heroes: ${heroes}
+heroes: ${heroes},
+isLoading: ${isLoading}
     ''';
   }
 }
